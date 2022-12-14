@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
-import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -21,7 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-_2rm1003serx)q-e&ku_(vmdin%s*m+kuyj7=*s1tabk9t_966'
+SECRET_KEY = 'django-insecure-r8i%do%+#=of_+ki6k_i3e--=)7jy&w31slyvhkc_ftb4cg#^h'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -38,9 +37,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
-    # TODO: remover debub toolbar
-    'debug_toolbar',
 ]
 
 MIDDLEWARE = [
@@ -51,10 +47,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-
-
-    # TODO: remover debug toolbar
-    'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
 ROOT_URLCONF = 'loja.urls'
@@ -62,7 +54,7 @@ ROOT_URLCONF = 'loja.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],
+        'DIRS': [],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -111,7 +103,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
-LANGUAGE_CODE = 'pt-BR'
+LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
 
@@ -124,47 +116,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = 'static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-STATICFILES_DIR = [
-    os.path.join('templates/static')
-]
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
-from django.contrib.messages import constants
-
-MESSAGE_TAGS = {
-    constants.DEBUG: 'alert-info',
-    constants.ERROR: 'alert-danger',
-    constants.INFO: 'alert-info',
-    constants.SUCCESS: 'alert-success',
-    constants.WARNING: 'alert-warning',
-}
-
-# Sessão em dias: 60s * 60m * 24h * 1d
-SESSION_COOKIE_AGE = 60 * 60 * 24 * 7
-
-# Salvar a cada requisição
-SESSION_SAVE_EVERY_REQUEST = False
-
-# Serializer - Padrão JSON
-# SESSION_SERIALIZER = 'django.contrib.sessions.serializers.PickleSerializer'
-
-# Para sessions em arquivos ao invés da base de dados
-# SESSION_ENGINE = "django.contrib.sessions.backends.file"
-# SESSION_FILE_PATH = '/home/luizotavio/Desktop/temp'
-
-
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-
-#TODO: remover debug toolbar
-INTERNAL_IPS = [
-
-    '127.0.0.1',
-
-]
