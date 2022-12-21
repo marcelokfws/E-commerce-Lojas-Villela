@@ -11,7 +11,13 @@ class BasePerfil(View):
     def setup(self, *args, **kwargs):
         super().setup(*args, **kwargs)
 
+        self.perfil = None
+
         if self.request.user.is_authenticated:
+            self.perfil = models.Perfil.objects.filter(
+                    usuario=self.request.user
+                    ).first()
+            
             self.contexto = {
                 'userform': forms.UserForm(
                     data=self.request.POST or None,
@@ -26,6 +32,9 @@ class BasePerfil(View):
             self.contexto = {
                 'userform': forms.UserForm(data=self.request.POST or None),
                 'perfilform':forms.PerfilForm(data=self.request.POST or None)}
+            
+        self.userform = self.contexto['userform']
+        self.perfilform = self.contexto['perfilform']
 
         self.renderizar = render(self.request, self.template_name, self.contexto)
 
@@ -34,6 +43,10 @@ class BasePerfil(View):
 
 class Criar(BasePerfil):
     def post(self, *args, **kwargs):
+        if not self.userform.is_valid() or not self.perfilform.is_valid():
+            print('valido')
+            return  self.renderizar
+        print('invalido')
         return self.renderizar
 
 class Atualizar(View):
