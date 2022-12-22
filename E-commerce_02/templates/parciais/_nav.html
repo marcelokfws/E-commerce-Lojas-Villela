@@ -1,7 +1,8 @@
 {% load omfilters %}
 
+
 <nav class="navbar navbar-dark bg-primary navbar-expand-lg">
-    <a class="navbar-brand" href="{% url 'produto:lista' %}">E-COMMERCE</a>
+    <a class="navbar-brand" href="{% url 'produto:lista' %}">LOJA DO VILLELA</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -10,28 +11,35 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ml-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="https://www.google.com.br/" target="_blank"><strong>Google</strong><span class="sr-only">(current)</span></a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
+            <li class="nav-item active">
+
+                
+                   
+
             </li>
+            {% if request.user.is_authenticated %}
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                <a class="nav-link dropdown-toggle" href="#"id="navbarDropdown" role="button"
                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Dropdown
+                    Conta
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Something else here</a>
+                    <a class="dropdown-item" href="{% url 'perfil:criar'%}">Atualizar dados</a>
+                    <a class="dropdown-item" href="{% url 'perfil:logout'%}">Sair</a>
                 </div>
             </li>
+            {% else %}
             <li class="nav-item">
-                <a class="nav-link disabled" href="#">Disabled</a>
-
+                <a class="nav-link " href="{% url 'perfil:criar'%}">Entrar</a>
             </li>
 
+            <li class="nav-item">
+                <a class="nav-link " href="{% url 'perfil:criar'%}">Criar conta</a>
+            </li>
+
+            {% endif%}
             {% if request.session.carrinho %}
 
             <li class="nav-item">
@@ -51,7 +59,7 @@
         </ul>
         <form class="form-inline my-2 my-lg-0">
             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+            <button class="btn btn-secondary my-2 my-sm-0" href="https://www.google.com.br/"type="submit">Pesquisar</button>
         </form>
     </div>
 </nav>
