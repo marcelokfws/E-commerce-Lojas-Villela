@@ -54,6 +54,18 @@ class Perfil(models.Model):
 
     def clean(self):
         error_messeger = {}
+
+        cpf_enviado = self.cpf or None
+        cpf_salvo = None
+        perfil = Perfil.objects.filter(cpf=cpf_enviado).first()
+
+        if perfil:
+            cpf_salvo = perfil.cpf
+
+            if cpf_salvo is not None and self.pk != perfil.pk:
+                error_messeger['cpf'] = 'CPF já cadastrado nessa loja.'
+
+
         if not valida_cpf(self.cpf):
             error_messeger['cpf'] = 'Digite um CPF válido'
 

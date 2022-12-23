@@ -2,7 +2,7 @@
 
 
 <nav class="navbar navbar-dark bg-primary navbar-expand-lg">
-    <a class="navbar-brand" href="{% url 'produto:lista' %}">LOJA DO VILLELA</a>
+    <a class="navbar-brand" href="{% url 'produto:lista' %}">LOJAS VILLELA</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -28,6 +28,7 @@
                     Conta
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="{% url 'pedido:lista'%}">Meus Pedidos</a>
                     <a class="dropdown-item" href="{% url 'perfil:criar'%}">Atualizar dados</a>
                     <a class="dropdown-item" href="{% url 'perfil:logout'%}">Sair</a>
                 </div>
@@ -59,8 +60,8 @@
             </li>
             {% endif %}
         </ul>
-        <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <form class="form-inline my-2 my-lg-0" method="GET" action="{% url 'produto:busca'%}">
+            <input name="termo" value="{{ request.GET.termo }}"class="form-control mr-sm-2" type="search" placeholder="Busca" aria-label="Busca">
             <button class="btn btn-secondary my-2 my-sm-0" href="https://www.google.com.br/"type="submit">Pesquisar</button>
         </form>
     </div>
